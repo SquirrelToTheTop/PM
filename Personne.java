@@ -1,6 +1,7 @@
 public class Personne{
 
 	private String name, surname;
+	private String time;
 	
 	public Personne(String name, String surname){
 	
