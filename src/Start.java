@@ -1,5 +1,4 @@
 import java.awt.*;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Start{
@@ -18,8 +17,6 @@ public class Start{
 		jop1.showMessageDialog(null, "Message informatif", "Information", JOptionPane.INFORMATION_MESSAGE);
 		/*------------------------------------------------------------------------------------*/
 		
-		Personne p = new Personne("Jean", "Philippe");
-		System.out.println("-> "+p.getName()+" , "+p.getSurname());
 	}
 
 }
