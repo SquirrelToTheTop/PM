@@ -3,7 +3,7 @@ import javax.swing.JOptionPane;
 
 public class Start{
 
-	private static int width = 600, height = 600;
+	private static final int width = 600, height = 600;
 
 	public static void main(String[] args){		
 		
@@ -17,7 +17,6 @@ public class Start{
 		jop1.showMessageDialog(null, "Message informatif", "Information", JOptionPane.INFORMATION_MESSAGE);
 		/*------------------------------------------------------------------------------------*/
 			
-		Operator op = new Operator("Pm", "bou");
-		
+		Operator op = new Operator("Pierre", "Bou");
 	}
 }
