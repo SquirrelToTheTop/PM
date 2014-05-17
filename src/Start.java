@@ -8,15 +8,16 @@ public class Start{
 	public static void main(String[] args){		
 		
 		System.out.println("\n********** Starting program **********\n");
-		
+			
 		Dimension dim = new Dimension(width, height);	
 		Display win = new Display("Emploi du temps", dim);
-		
+			
 		/*-------------TEST MESSAGE D'INFOMATION----------------------------------------------*/
 		JOptionPane jop1 = new JOptionPane();
 		jop1.showMessageDialog(null, "Message informatif", "Information", JOptionPane.INFORMATION_MESSAGE);
 		/*------------------------------------------------------------------------------------*/
+			
+		Operator op = new Operator("Pm", "bou");
 		
 	}
-
 }
