@@ -1,15 +1,17 @@
 public class Operator{
 
-	private String name, surname;
+	private String name, surname, type;
 	private String poste;
 	private int num_poste;
 	
-	public Operator(String name, String surname){
+	public Operator(String name, String surname, String type){
 	
 		System.out.println("\n-> create new Operator ");
+		System.out.println("\t-> "+name+","+surname+","+type);
 		
 		this.name = name;
 		this.surname = surname;
+		this.type = type;
 		num_poste = 0;
 		poste = new String("");
 	}
@@ -21,6 +23,10 @@ public class Operator{
 	
 	public String getSurname(){
 		return surname;
+	}
+	
+	public String getType(){
+		return type;
 	}
 	
 	public String getPoste(){

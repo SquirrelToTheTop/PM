@@ -1,14 +1,16 @@
 public class Monitor{
 	
-	private String name, surname;
+	private String name, surname, type;
 	private String poste;
 	
-	public Monitor(String name, String surname){
+	public Monitor(String name, String surname, String type){
 	
 		System.out.println("\n-> create new Monitor ");
+		System.out.println("\t-> "+name+","+surname);
 	
 		this.name = name;
 		this.surname = surname;
+		this.type = type;
 		poste = new String("");
 	}
 

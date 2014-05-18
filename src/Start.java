@@ -4,8 +4,11 @@ import javax.swing.JOptionPane;
 public class Start{
 
 	private static final int width = 600, height = 600;
+	public static String nm;
 
 	public static void main(String[] args){		
+		
+		Operator [] ops = new Operator[10];
 		
 		System.out.println("\n********** Starting program **********\n");
 			
@@ -16,7 +19,6 @@ public class Start{
 		JOptionPane jop1 = new JOptionPane();
 		jop1.showMessageDialog(null, "Message informatif", "Information", JOptionPane.INFORMATION_MESSAGE);
 		/*------------------------------------------------------------------------------------*/
-			
-		Operator op = new Operator("Pierre", "Bou");
-	}
+		
+	}	
 }
