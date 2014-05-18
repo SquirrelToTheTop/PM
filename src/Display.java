@@ -16,10 +16,6 @@ import javax.swing.JComboBox;
 
 import javax.swing.JOptionPane;
 
-/*
-* Probleme transfert des dates nm, srnm, type récupérer avec la popup
-*/
-
 public class Display extends JFrame{
 
 	private JMenuBar menu_bar;
@@ -91,12 +87,19 @@ public class Display extends JFrame{
 		
 	}
 	
+	/*
+	* recupération des données lues dans la popup
+	*/
 	public void setData(String n, String m, String t){
 		nm = n;
 		srnm = m;
 		type = t;
 	}
 	
+	/*
+	* creation des opérateurs, moniteurs seulement quand
+	* la popup a envoyés les infos et avant qu'elle se ferme
+	*/
 	public void ok(String def){
 		if(def == "Operator"){
 			Operator op = new Operator(nm, srnm, type);
