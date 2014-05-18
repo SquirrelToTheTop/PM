@@ -21,11 +21,13 @@ public class Popup extends JFrame{
 	private JButton ok;
 	private JComboBox<String> jcb;
 	
-	static private String nm, srnm, type;
-	
-	public boolean finish = false;
+	private String nm, srnm, type;
+	private final Display d;
+	private final String defstr;
 
-	public Popup(String def, String t){
+	public Popup(String def, String t, Display dis){
+	
+		defstr = def;
 	
 		p = new JPanel();
 		l = new BorderLayout();
@@ -40,12 +42,12 @@ public class Popup extends JFrame{
 		label_surname = new JLabel("Prenom :");
 		label_jcb = new JLabel("Type :");
 		
+		d = dis;
 		ok.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg) {
-				nm = jtf_nm.getText();
-				srnm = jtf_srnm.getText();
-				type = (String)jcb.getSelectedItem();
-				finish = true;
+				
+				d.setData(jtf_nm.getText(),jtf_srnm.getText(),(String)jcb.getSelectedItem());
+				d.ok(defstr);
 				dispose();
 			}        
 		});
@@ -87,17 +89,4 @@ public class Popup extends JFrame{
 		this.setVisible(true);
 		
 	}
-	
-	public String getName(){
-		return nm;
-	}
-	
-	public String getSurname(){
-		return srnm;
-	}
-	
-	public String getTypeT(){
-		return type;
-	}
-
 }

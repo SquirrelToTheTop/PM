@@ -26,8 +26,12 @@ public class Display extends JFrame{
 	private JMenu menu_action, menu_add;
 	private JMenuItem item_op, item_mo;
 	
+	/* test */
+	private final Display dis;
+	/*----- */
+	
 	/* a revoir c'est un peu ninja */
-	private String nm, srnm, type;
+	public String nm, srnm, type;
 	private	JFrame f;
 	private	JPanel p;
 	private	BorderLayout l;
@@ -43,7 +47,7 @@ public class Display extends JFrame{
 		
 		/* Creation de la barre menu */
 		menu_bar = new JMenuBar();
-		createMenu();
+		createMenu(this);
 		
 		/* Options pour la fenetre */
 		this.setJMenuBar(menu_bar);
@@ -52,44 +56,31 @@ public class Display extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
+		
+		dis = this;
+		
 	}
 	
 	/* 
 	* Creation de la barre de menu 
 	*/
-	private void createMenu(){
+	private void createMenu(Display dis){
+	
+		final Display d = dis;
 	
 		menu_add = new JMenu("Ajouter");
 		
 		item_op = new JMenuItem("Operateur");
 		item_op.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg) {
-				//addOperator();
-				//JOptionPane jop = new JOptionPane(), jop2 = new JOptionPane();
-				//nm = jop.showInputDialog(null, "Nom : ", "Nouvel Operateur", JOptionPane.QUESTION_MESSAGE);
-				Popup pop = new Popup("Operator", "New Op");
-				/* 
-				* Test ... 
-				*/
-				/*synchronized(this) {
-				  while (pop.finish == false) {
-					try {
-					  wait();
-					} catch (InterruptedException ie) {}
-				  }
-				}*/
-		  
-				Start.nm = pop.getName();
-				System.out.println("Dans action listener "+nm);
+				Popup pop = new Popup("Operator", "New Op", d);		  
 			}        
 		});
-		
-		System.out.println("Dans display "+nm);
 		
 		item_mo = new JMenuItem("Moniteur");
 		item_mo.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg) {
-				System.out.println("En travaux ! ");
+				Popup pop = new Popup("Monitor", "New Op", d);
 			}        
 		});
 		
@@ -97,77 +88,21 @@ public class Display extends JFrame{
 		menu_add.add(item_mo);
 		
 		menu_bar.add(menu_add);
+		
 	}
 	
-/*
-	public void addOperator(){
-		Popup("Operator", "Nouvel operateur");
-		System.out.println("Popup intialized");	
-		System.out.println(nm+"+"+srnm+"+"+type);
-		Operator op = new Operator(nm, srnm, type);
+	public void setData(String n, String m, String t){
+		nm = n;
+		srnm = m;
+		type = t;
 	}
-
-	public void Popup(String def, String t){
 	
-		f = new JFrame(t);
-		p = new JPanel();
-		l = new BorderLayout();
-		jcb = new JComboBox();
-		
-		ok = new JButton("Valider");
-		
-		jtf_nm = new JTextField();
-		jtf_srnm = new JTextField();
-
-		label_name = new JLabel("Nom :");
-		label_surname = new JLabel("Prenom :");
-		label_jcb = new JLabel("Type :");
-		
-		ok.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg) {
-				nm = jtf_nm.getText();
-				srnm = jtf_srnm.getText();
-				type = (String)jcb.getSelectedItem();
-				f.dispose();
-			}        
-		});
-		
-		jcb.addItem("Plein temps");
-		jcb.addItem("Mi-temps");
-		jcb.addItem("4/5 temps");
-		
-		
-		jtf_nm.setPreferredSize(new Dimension(120,20));
-		jtf_srnm.setPreferredSize(new Dimension(120,20));
-		
-		// layout absolut
-		p.setLayout(null);
-		p.add(label_name);
-		p.add(jtf_nm);
-		p.add(label_surname);
-		p.add(jtf_srnm);
-		p.add(label_jcb);
-		p.add(jcb);
-		p.add(ok);
-		
-		label_name.setBounds(10,10,70,20);
-		jtf_nm.setBounds(100,10,150,25);
-		
-		label_surname.setBounds(10,50,70,20);
-		jtf_srnm.setBounds(100,50,150,25);
-		
-		label_jcb.setBounds(10,90,70,20);
-		jcb.setBounds(100,90,150,25);
-		
-		ok.setBounds(100,130,80,30);
-		
-		f.setContentPane(p); 
-		f.setAlwaysOnTop(true);
-		f.setSize(300,200);
-		f.setLocationRelativeTo(null);
-		f.setResizable(false);
-		f.setVisible(true);
-		
-	}*/
+	public void ok(String def){
+		if(def == "Operator"){
+			Operator op = new Operator(nm, srnm, type);
+		}else{
+			Monitor mo = new Monitor(nm, srnm, type);
+		}
+	}
 	
 }

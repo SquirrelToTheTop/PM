@@ -6,7 +6,7 @@ public class Monitor{
 	public Monitor(String name, String surname, String type){
 	
 		System.out.println("\n-> create new Monitor ");
-		System.out.println("\t-> "+name+","+surname);
+		System.out.println("\t-> "+name+","+surname+","+type);
 	
 		this.name = name;
 		this.surname = surname;
