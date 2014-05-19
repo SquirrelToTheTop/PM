@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Dimension;
@@ -25,61 +27,111 @@ public class Popup extends JFrame{
 	private final Display d;
 	private final String defstr;
 
-	public Popup(String def, String t, Display dis){
+	public Popup(String def, String t, Display dis, String action){
 	
 		defstr = def;
 	
-		p = new JPanel();
-		l = new BorderLayout();
-		jcb = new JComboBox();
-		
-		ok = new JButton("Valider");
-		
-		jtf_nm = new JTextField();
-		jtf_srnm = new JTextField();
+		if(action == "add"){
+			p = new JPanel();
+			l = new BorderLayout();
+			jcb = new JComboBox<String>();
+			
+			ok = new JButton("Valider");
+			
+			jtf_nm = new JTextField();
+			jtf_srnm = new JTextField();
 
-		label_name = new JLabel("Nom :");
-		label_surname = new JLabel("Prenom :");
-		label_jcb = new JLabel("Type :");
-		
-		d = dis;
-		ok.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg) {
+			label_name = new JLabel("Nom :");
+			label_surname = new JLabel("Prenom :");
+			label_jcb = new JLabel("Type :");
+			
+			d = dis;
+			
+			ok.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent arg) {
+					
+					d.setData(jtf_nm.getText(),jtf_srnm.getText(),jcb.getSelectedItem().toString());
+					d.addPpl(defstr);
+					dispose();
+				}        
+			});
+			
+			jcb.addItem("Plein temps");
+			jcb.addItem("Mi-temps");
+			jcb.addItem("4/5 temps");
+			
+			
+			jtf_nm.setPreferredSize(new Dimension(120,20));
+			jtf_srnm.setPreferredSize(new Dimension(120,20));
+			
+			// layout absolut
+			p.setLayout(null);
+			p.add(label_name);
+			p.add(jtf_nm);
+			p.add(label_surname);
+			p.add(jtf_srnm);
+			p.add(label_jcb);
+			p.add(jcb);
+			p.add(ok);
+			
+			label_name.setBounds(10,10,70,20);
+			jtf_nm.setBounds(100,10,150,25);
+			
+			label_surname.setBounds(10,50,70,20);
+			jtf_srnm.setBounds(100,50,150,25);
+			
+			label_jcb.setBounds(10,90,70,20);
+			jcb.setBounds(100,90,150,25);
+			
+			ok.setBounds(100,130,80,30);
+		}else{
+			p = new JPanel();
+			l = new BorderLayout();
+			
+			d = dis;
+			if(def=="Operator"){
+				ArrayList<Operator> op_tmp_list = d.getOpList();
+				String[] op_str = new String[op_tmp_list.size()];
 				
-				d.setData(jtf_nm.getText(),jtf_srnm.getText(),(String)jcb.getSelectedItem());
-				d.ok(defstr);
-				dispose();
-			}        
-		});
-		
-		jcb.addItem("Plein temps");
-		jcb.addItem("Mi-temps");
-		jcb.addItem("4/5 temps");
-		
-		
-		jtf_nm.setPreferredSize(new Dimension(120,20));
-		jtf_srnm.setPreferredSize(new Dimension(120,20));
-		
-		// layout absolut
-		p.setLayout(null);
-		p.add(label_name);
-		p.add(jtf_nm);
-		p.add(label_surname);
-		p.add(jtf_srnm);
-		p.add(label_jcb);
-		p.add(jcb);
-		p.add(ok);
-		
-		label_name.setBounds(10,10,70,20);
-		jtf_nm.setBounds(100,10,150,25);
-		
-		label_surname.setBounds(10,50,70,20);
-		jtf_srnm.setBounds(100,50,150,25);
-		
-		label_jcb.setBounds(10,90,70,20);
-		jcb.setBounds(100,90,150,25);
-		
-		ok.setBounds(100,130,80,30);
+				for( int i=0; i<op_tmp_list.size(); i++)
+					op_str[i] = op_tmp_list.get(i).getName()+", "+op_tmp_list.get(i).getSurname();
+					
+				jcb = new JComboBox(op_str);
+				
+			}else{
+				ArrayList<Monitor> mo_tmp_list = d.getMoList();
+				String[] mo_str = new String[mo_tmp_list.size()];
+				
+				for( int i=0; i<mo_tmp_list.size(); i++)
+					mo_str[i] = mo_tmp_list.get(i).getName()+", "+mo_tmp_list.get(i).getSurname();
+					
+				jcb = new JComboBox(mo_str);
+			}
+			
+			label_jcb = new JLabel("JeCpas:");
+			
+			ok = new JButton("Valider");			
+			
+			ok.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent arg) {
+					String t = jcb.getSelectedItem().toString();
+					t = t.replaceAll(" ", "");
+					d.rmPpl(defstr,t);
+					dispose();
+				}        
+			});
+			
+			// layout absolut
+			p.setLayout(null);
+			p.add(label_jcb);
+			p.add(jcb);
+			p.add(ok);
+			
+			label_jcb.setBounds(10,40,70,20);
+			jcb.setBounds(80,40,200,25);
+			
+			ok.setBounds(100,130,80,30);
+		}
 		
 		this.setTitle(t);
 		this.setContentPane(p); 

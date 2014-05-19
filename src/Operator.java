@@ -2,13 +2,9 @@ public class Operator{
 
 	private String name, surname, type;
 	private String poste;
-	private int num_poste;
+	private int num_poste, num_op;
 	
-	public Operator(String name, String surname, String type){
-	
-		System.out.println("\n-> create new Operator ");
-		System.out.println("\t-> "+name+","+surname+","+type+"\n");
-		
+	public Operator(String name, String surname, String type){		
 		this.name = name;
 		this.surname = surname;
 		this.type = type;
@@ -36,11 +32,19 @@ public class Operator{
 	public int getNumPoste(){
 		return num_poste;
 	}
+	
+	public String getNumOp(){
+		return Integer.toString(num_op);
+	}
 	/*------------------------------------------------------------*/
 	
 	/* fonction de modification des variables de la classe */
 	public void setPoste(String p){
 		poste = p;
+	}
+	
+	public void setNumOp(int n){
+		num_op = n;
 	}
 	
 	public void setNumPoste(int n){
