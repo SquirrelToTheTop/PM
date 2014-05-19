@@ -7,7 +7,7 @@ public class Operator{
 	public Operator(String name, String surname, String type){
 	
 		System.out.println("\n-> create new Operator ");
-		System.out.println("\t-> "+name+","+surname+","+type);
+		System.out.println("\t-> "+name+","+surname+","+type+"\n");
 		
 		this.name = name;
 		this.surname = surname;

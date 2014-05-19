@@ -81,6 +81,7 @@ public class Popup extends JFrame{
 		
 		ok.setBounds(100,130,80,30);
 		
+		this.setTitle(t);
 		this.setContentPane(p); 
 		this.setAlwaysOnTop(true);
 		this.setSize(300,200);
